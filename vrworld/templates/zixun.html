@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+<!--
+{% load staticfiles %}
+--> 
+{% block body_block %}
+<style type="text/css">
+a{
+color:black;
+text-decoration:none;
+}
+h4{
+text-indent:2em;
+}
+.box2{
+width:600px;
+height:300px;
+float:left;
+margin:20px 0px 0px 60px;
+}
+.box3{
+width:400px;
+height:200px;
+float:left;
+text-align:left;
+margin:20px;
+padding-left:70px;
+margin-top:180px;
+color:black;
+text-decoration:none;
+}
+#nan{
+position:fixed;
+bottom:0;
+left:0;
+}
+</style>
+<div class>
+<h4>&nbsp&nbsp每日资讯</h4></br>
+  {% if news_list %}
+          {% for news  in news_list %} 
+      <!-- <div class="row"> -->
+       <!--  <div class="span9">    -->
+          <!-- <p>{{news.title}} </p> -->
+        <!--  <p>{{news.date}} -->
+
+    <div class="box box2" >
+    <a href="{{news.myurl}}" target="_blank">
+      <img  width="100%" class="box2" src="{% static news.picture %}" alt="...">
+    </div>
+   <div class="box box3">{{news.title}}
+<br/> 
+     <a>{{ news.date }}</a>  
+<br/>
+<br/>
+     <a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{news.summary}}</a>
+   </a>
+   </div>
+
+
+
+  
+
+
+
+
+
+
+
+     
+
+
+  
+   
+
+ <!--      <p><a class="btn" href="{{ news.myurl }}"  target="_blank">了解更多 &raquo;</a></p> -->
+    
+
+          {% endfor %}
+    {% endif %}
+    <div class="na" id = "nan">
+  <ul class="pager">
+    <li><a href="#">Previous</a></li>
+    <li><a href="/sub_vrworld/news_1">Next</a></li>
+  </ul>
+</div>
+{% endblock %}
+

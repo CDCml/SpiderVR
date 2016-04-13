@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+    {% load staticfiles %}
+ 
+ {% block body_block %}
+ 
+             <!--判断用户是否登陆-->
+              {% if user.is_authenticated %}
+           
+
+            <form class="navbar-form pull-right" method="post" action="{% url 'logout' %}">
+              	{% csrf_token %}
+               <a href="{% url 'personal' %}"><strong>{{user.username}}</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+              	<button type="submit" class="btn btn-danger">退出</button>
+       			</form>
+              
+              {% else %}
+			      
+            {% if errors %}
+              {% for error in errors %}
+                <!--登陆错误信息-->
+                <span class="label label-warning">{{error}}</span>
+                <!--#########   bug     ############           -->
+             {% endfor %}
+            {% endif %}
+
+        <!--没有登陆重新登陆-->
+				    <form class="navbar-form pull-right" method="post" action="{% url 'login' %}">
+					     {% csrf_token %}
+  					   
+  					
+  					   <a class="btn btn-success" href="{% url 'login' %}">登录</a>
+               <a class="btn btn-primary" href="{% url 'register' %}">注册</a>
+				    </form>
+			
+			       {% endif %}
+          </div><!--/.nav-collapse -->
+
+
+        </div><!--/container-->
+
+      </div>
+    </div>
+
+
+  <div class="container">
+    <div class="row">
+    <div class="span8">
+      <!-- <div class="hero-unit"> -->
+        <h2 ><font color="purple">{{ news.newsTitle }}</font></h2> 
+        <p>{{ news.newsTime }}</p>
+        <p> <font size="4" style="line-height:30px;">
+          <pre word-wrap: break-word>{{ news.newsContent }}</pre></font>
+        </p>
+      <!-- </div> -->
+      </div><!--span9-->
+       {% if picture %}
+      <div class="span4">
+         <a href="#" class="thumbnail">
+         <!-- <img src="{% static "images/jay.jpg" %}" alt="test"> -->
+         
+    {% for img in picture %}
+      <img src="{{img.picture}}"><br/>
+    {% endfor %}
+  
+        </a>
+       </div><!--span3 -->
+{% endif %}
+      </div><!--row-->
+      
+      <hr>
+
+   
+     
+ {% endif %}   
+
+
+  
+ 
+
+
+
+
+
+   
+
+    </div> <!-- /container -->
+
+    {% endblock %}
